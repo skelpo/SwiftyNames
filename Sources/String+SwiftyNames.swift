@@ -18,8 +18,9 @@ public struct NameParts {
 
 extension String {
     public func getNameParts() -> NameParts {
-        var commonPrefixes = ["Dr.", "Prof."]
-        var commonSuffixes = ["VI", "VII", "VIII", "I", "II", "III", "IV"]
+        
+        var commonPrefixes = ["Dr", "Prof"]
+        var commonSuffixes = ["VI", "VII", "VIII", "I", "II", "III", "IV", "JR", "SR", "SNR", "MdB", "StB", "RA", "JNR", "Senior", "Junior"]
         
         if self.uppercased() == self {
             commonPrefixes = commonPrefixes.map { $0.uppercased() }
@@ -29,7 +30,7 @@ extension String {
             commonPrefixes = commonPrefixes.map { $0.lowercased() }
             commonSuffixes = commonSuffixes.map { $0.lowercased() }
         }
-        let name = self.trimmingCharacters(in: .whitespacesAndNewlines)
+        let name = self.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: ".", with: "")
         var nameparts = NameParts()
         var lastnameSet = false
         var firstnameSet = false
