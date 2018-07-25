@@ -9,11 +9,11 @@
 import Foundation
 
 public struct NameParts {
-    var firstname = ""
-    var lastname = ""
-    var middlenames:[String] = []
-    var suffixes:[String] = []
-    var prefixes:[String] = []
+    public var firstname = ""
+    public var lastname = ""
+    public var middlenames:[String] = []
+    public var suffixes:[String] = []
+    public var prefixes:[String] = []
 }
 
 extension String {
