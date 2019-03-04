@@ -20,7 +20,7 @@ extension String {
     public func getNameParts() -> NameParts {
         
         var commonPrefixes = ["Dr", "Prof"]
-        var commonSuffixes = ["VI", "VII", "VIII", "I", "II", "III", "IV", "JR", "SR", "SNR", "MdB", "StB", "RA", "JNR", "Senior", "Junior"]
+        var commonSuffixes = ["VI", "VII", "VIII", "I", "II", "III", "IV", "JR", "SR", "SNR", "MdB", "StB", "RA", "JNR", "Senior", "Junior", "Jr", "Sr"]
         
         if self.uppercased() == self {
             commonPrefixes = commonPrefixes.map { $0.uppercased() }
@@ -30,10 +30,20 @@ extension String {
             commonPrefixes = commonPrefixes.map { $0.lowercased() }
             commonSuffixes = commonSuffixes.map { $0.lowercased() }
         }
-        let name = self.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: ".", with: "")
+        var name = self.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: ".", with: "")
         var nameparts = NameParts()
         var lastnameSet = false
         var firstnameSet = false
+        for suffix in commonSuffixes {
+            if name.contains(", \(suffix)") {
+                nameparts.suffixes.append(suffix)
+                name = name.replacingOccurrences(of: ", \(suffix)", with: "")
+            }
+            if name.contains(",\(suffix)") {
+                nameparts.suffixes.append(suffix)
+                name = name.replacingOccurrences(of: ", \(suffix)", with: "")
+            }
+        }
         if name.contains(", ") {
             
             let comps = name.components(separatedBy: ", ")
