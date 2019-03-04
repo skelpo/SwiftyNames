@@ -21,6 +21,7 @@ extension String {
         
         var commonPrefixes = ["Dr", "Prof"]
         var commonSuffixes = ["VI", "VII", "VIII", "I", "II", "III", "IV", "JR", "SR", "SNR", "MdB", "StB", "RA", "JNR", "Senior", "Junior", "Jr", "Sr"]
+        var removeIndividualCharacters = [":","-",".","*","_"]
         
         if self.uppercased() == self {
             commonPrefixes = commonPrefixes.map { $0.uppercased() }
@@ -109,7 +110,7 @@ extension String {
         }
         var newMiddlenames:[String] = []
         for m in nameparts.middlenames {
-            if !(m == nameparts.lastname) {
+            if !(m == nameparts.lastname) && !removeIndividualCharacters.contains(m) {
                 newMiddlenames.append(m)
             }
         }

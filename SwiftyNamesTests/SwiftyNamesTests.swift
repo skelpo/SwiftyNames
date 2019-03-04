@@ -28,7 +28,8 @@ class SwiftyDatesTests: XCTestCase {
             "Ward, William Franklin IV",
             "Dr. Ward, William Franklin III",
             "LOUIS RUSSELL WONDERLY JR",
-            "John Willard Marriott, Jr"
+            "John Willard Marriott, Jr",
+            "Raoul : Roßmann"
         ]
         
         for name in testNames {
